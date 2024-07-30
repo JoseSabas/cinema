@@ -95,7 +95,7 @@ const RoomPage:NextPage<Props> = ({id}) => {
     const token = Cookies.get('token');
     const headers = {Authorization:`Bearer ${token}`};
     try{
-      const {data:{id}} = await cinemaApi.post<BookingResponse>('/bookings', {booker:user.id, schedule:activeSchedule}, {headers});
+      const {data:{id}} = await cinemaApi.post<BookingResponse>('/bookings', {booker:user?.id, schedule:activeSchedule}, {headers});
       for(const n of selectedSeats)
         await cinemaApi.post('/seats', {n, booking:id}, {headers});
       router.push("/");

@@ -16,7 +16,7 @@ export const Navbar = () => {
       </div>
       { isLoggedIn ? 
         <>
-          <span className={styles['name-container']}>Bienvenido <b>{user.name}</b></span>
+          <span className={styles['name-container']}>Bienvenido <b>{user?.name}</b></span>
           <button onClick={logout} className={styles['button']}>Salir</button>
         </> :
         <button onClick={() => router.push("/auth/login") } className={styles['button']}>Ingresar</button>

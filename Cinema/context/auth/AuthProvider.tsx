@@ -10,7 +10,7 @@ export interface AuthState {
   user?: User;
 }
 
-const AUTH_INITIAL_STATE:AuthState = {isLoggedIn:false};
+const AUTH_INITIAL_STATE:AuthState = {isLoggedIn:false, user:undefined};
 
 export const AuthProvider:FC = ({children}) => {
   const [state, dispatch] = useReducer(authReducer, AUTH_INITIAL_STATE);
