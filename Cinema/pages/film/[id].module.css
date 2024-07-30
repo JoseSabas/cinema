@@ -1,0 +1,148 @@
+.seats-main-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.seats-container-inner {
+  width: 26rem;
+}
+
+.seats-container {
+  padding: 0 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.seat {
+  background-color: brown;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.bussySeat {
+  background-color: rgb(165, 42, 42, 0.5);
+  cursor: default;
+}
+
+.screen {
+  margin-top: 2rem;
+  background-color: grey;
+  padding: 0.2rem;
+  text-align: center;
+  font-size: 0.85rem;
+  width: 26rem;
+}
+
+.form-container {
+  background-color: white;
+  width: 20rem;
+  margin-right: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-title {
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  font-weight: bolder;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.form-subtitle {
+  margin: 0;
+  font-size: 0.85rem;
+  margin-top: 0.7rem;
+  margin-bottom: 0.2rem;
+}
+
+.shedules-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.shedule {
+  border: 2px solid #00e16f;
+  width: 3rem;
+  text-align: center;
+  border-radius: 0.7rem;
+  padding: 0.1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.activeShedule {
+  background-color: #00e16f;
+  color: white;
+}
+
+.button {
+  border: none;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  background-color: green;
+  border-radius: 0.3rem;
+  width: 6rem;
+  height: 1.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.legend-container {
+  display: flex;
+  margin-top: 1rem;
+  gap: 2rem;
+}
+
+.legend-item {
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.legend-color {
+  background-color: brown;
+  width: 0.5rem;
+  height: 0.5rem;
+}
+.bussy-legend-color {
+  background-color: rgb(165, 42, 42, 0.5);
+}
+
+.sel-seats-cont {
+  font-size: 0.8rem;
+  color: grey;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.sel-seat {
+  background-color: orange;
+  color: white;
+  width: 1rem;
+  height: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

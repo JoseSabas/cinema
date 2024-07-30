@@ -1,0 +1,53 @@
+.main-container {
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 13rem;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+}
+
+.title {
+  margin: 0;
+  font-weight: bolder;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.input-text {
+  margin-bottom: 0.2rem;
+  margin-top: 1rem;
+}
+
+.input {
+  outline: none;
+  width: 100%;
+}
+
+.button {
+  margin-top: 1.5rem;
+}
+
+.error-msg {
+  margin: 0;
+  background-color: rgb(225, 80, 80);
+  color: white;
+  font-size: 0.7rem;
+  width: 100%;
+  margin-top: 0.2rem;
+  text-align: center;
+}
+
+.link {
+  width: 100%;
+  font-size: 0.8rem;
+  text-align: right;
+  margin-top: 1rem;
+}
+
+.link-text {
+  color: blue;
+  cursor: pointer;
+}
