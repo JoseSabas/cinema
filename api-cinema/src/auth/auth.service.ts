@@ -15,12 +15,12 @@ export class AuthService {
     if(user)
       throw new BadRequestException('User already exists');
 
-    await this.bookersService.create({name, email, password:await bcryptjs.hash(password, 10)});
+    const {id} = await this.bookersService.create({name, email, password:await bcryptjs.hash(password, 10)});
 
     const payload = {email};
     const token = await this.jwtService.signAsync(payload);
 
-    return {token, name};
+    return {token, user:{name, id}};
   }
 
   async login({email, password}:LoginDto){
@@ -35,6 +35,6 @@ export class AuthService {
     const payload = {email};
     const token = await this.jwtService.signAsync(payload);
 
-    return {token, name:booker.name};
+    return {token, user:{name:booker.name, id:booker.id}};
   }
 }

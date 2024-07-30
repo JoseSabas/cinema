@@ -1,5 +1,4 @@
 .main-container {
-  background-color: #ffffff;
   position: fixed;
   top: 0;
   left: 0;
@@ -10,6 +9,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 1rem;
+  background-color: rgba(255, 255, 255, .3);  
+  backdrop-filter: blur(5px);
 }
 
 .logo-container {
@@ -20,6 +21,10 @@
 
 .logo-title {
   font-weight: bolder;
+}
+
+.name-container {
+  font-size: 0.85rem;
 }
 
 .button {

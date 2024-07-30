@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState, ReactElement, FormEvent } from "react";
 import { NextPage, GetServerSideProps } from 'next';
+import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import { AuthContext } from '../../context/auth';
 import { CinemaLayout } from '../../components/layouts';
@@ -14,7 +15,7 @@ interface Props {
 
 const RoomPage:NextPage<Props> = ({id}) => {
   const router = useRouter();
-  const { isLoggedIn } = useContext(AuthContext);
+  const { user, isLoggedIn } = useContext(AuthContext);
 
   const [data, setData] = useState<FilmResponse>();
   const [auditoriums, setAuditoriums] = useState<string[]>([]);
@@ -25,6 +26,7 @@ const RoomPage:NextPage<Props> = ({id}) => {
   const [busySeats, setBusySeats] = useState<number[]>([]);
   const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
   const [isBooking, setIsBooking] = useState<boolean>(false);
+  const [msg, setMsg] = useState<string>('');
 
   useEffect(() => {
     const fetchData = async() => {
@@ -74,16 +76,34 @@ const RoomPage:NextPage<Props> = ({id}) => {
 
   const handleSubmit = async(event:FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if(!isLoggedIn)
-      return router.push("/auth/login");
+    setMsg('');
 
-    /*if(isBooking)
+    if(isBooking)
       return;
+
+    if(!isLoggedIn){
+      setIsBooking(false);
+      return router.push("/auth/login");
+    }
+
+    if(selectedSeats.length===0){
+      setIsBooking(false);
+      return setMsg('Tienes que reservar almenos un asiento');
+    }
+
     setIsBooking(true);
-    const {data:{id}} = await cinemaApi.post<BookingResponse>('/bookings', {booker:1, schedule:activeSchedule});
-    for(const n of selectedSeats)
-      await cinemaApi.post('/seats', {n, booking:id});
-    setIsBooking(false);*/
+    const token = Cookies.get('token');
+    const headers = {Authorization:`Bearer ${token}`};
+    try{
+      const {data:{id}} = await cinemaApi.post<BookingResponse>('/bookings', {booker:user.id, schedule:activeSchedule}, {headers});
+      for(const n of selectedSeats)
+        await cinemaApi.post('/seats', {n, booking:id}, {headers});
+      router.push("/");
+    }catch(e){
+      setMsg('Error al reservar');
+    }finally{
+      setIsBooking(false);
+    }
   }
 
   return (
@@ -106,8 +126,9 @@ const RoomPage:NextPage<Props> = ({id}) => {
       </div>
       <form onSubmit={handleSubmit} className={styles['form-container']}>
         <p className={styles['form-title']}>{data?.title}</p>
+        <p className={styles['form-description']}>{data?.description}</p>
         <p className={styles['form-subtitle']}>Selecciona una sala</p>
-        <select value={activeAuditorium} onChange={e => setActiveAuditorium(e.target.value)}>
+        <select value={activeAuditorium} onChange={e => setActiveAuditorium(e.target.value)} className={styles['form-select']}>
           {auditoriums.map(name => (
             <option key={name} value={name}>{name}</option>
           ))}
@@ -130,6 +151,7 @@ const RoomPage:NextPage<Props> = ({id}) => {
         <button type="submit" className={styles['button']}>
           {isBooking ? <ButtonLoader /> : 'Reservar'}
         </button>
+        {msg && <p className={styles['msg']}>{msg}</p>}
       </form>
     </CinemaLayout>
   )

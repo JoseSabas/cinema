@@ -6,7 +6,7 @@ import styles from './Navbar.module.css';
 
 export const Navbar = () => {
   const router = useRouter();
-  const { isLoggedIn, logout } = useContext(AuthContext);
+  const { user, isLoggedIn, logout } = useContext(AuthContext);
 
   return (
     <nav className={styles['main-container']}>
@@ -15,7 +15,10 @@ export const Navbar = () => {
         <div className={styles['logo-title']}>Cinema</div>
       </div>
       { isLoggedIn ? 
-        <button onClick={logout} className={styles['button']}>Salir</button> : 
+        <>
+          <span className={styles['name-container']}>Bienvenido <b>{user.name}</b></span>
+          <button onClick={logout} className={styles['button']}>Salir</button>
+        </> :
         <button onClick={() => router.push("/auth/login") } className={styles['button']}>Ingresar</button>
       }
     </nav>

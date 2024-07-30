@@ -27,7 +27,15 @@
   align-items: center;
   font-size: 0.9rem;
   cursor: pointer;
+  transition: all 0.5s ease;
 }
+.seat:active {
+  transform: scale(1.09);
+}
+.seat:hover {
+  background-color: rgb(140, 14, 14);
+}
+
 .bussySeat {
   background-color: rgb(165, 42, 42, 0.5);
   cursor: default;
@@ -36,22 +44,23 @@
 .screen {
   margin-top: 2rem;
   background-color: grey;
-  padding: 0.2rem;
+  padding: 0.1rem;
   text-align: center;
-  font-size: 0.85rem;
+  font-size: 0.7rem;
   width: 26rem;
 }
 
 .form-container {
-  background-color: white;
-  width: 20rem;
-  margin-right: 2rem;
+  width: 18rem;
+  margin-right: 6rem;
   border-radius: 0.5rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  padding: 0.5rem;
+  padding: 0.8rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgba(255, 255, 255, .25);  
+  backdrop-filter: blur(5px);
 }
 
 .form-title {
@@ -64,11 +73,25 @@
   text-overflow: ellipsis;
 }
 
+.form-description {
+  font-size: 0.7rem;
+  text-align: center;
+}
+
 .form-subtitle {
   margin: 0;
   font-size: 0.85rem;
   margin-top: 0.7rem;
   margin-bottom: 0.2rem;
+}
+
+.form-select {
+  width: 6rem;
+  border: none;
+  padding: 0.2rem;
+  border-radius: 0.2rem;
+  outline: none;
+  cursor: pointer;
 }
 
 .shedules-container {
@@ -96,13 +119,18 @@
   border: none;
   cursor: pointer;
   margin-top: 1.5rem;
-  background-color: green;
+  background-color: red;
+  color: white;
   border-radius: 0.3rem;
   width: 6rem;
   height: 1.75rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.5s ease;
+}
+.button:active {
+  transform: scale(1.05);
 }
 
 .legend-container {
@@ -145,4 +173,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.msg {
+  margin: 0;
+  background-color: red;
+  color: white;
+  margin-top: 1rem;
+  width: 100%;
+  text-align: center;
+  font-size: 0.7rem;
 }

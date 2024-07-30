@@ -19,7 +19,7 @@ export const CinemaLayout:FC<Props> = ({children, title, pageDescription}) => {
 
       <Navbar />
 
-      <main style={{marginTop:'3rem', marginBottom:'5rem', minHeight:'calc(100vh - 8rem)', display:'flex', justifyContent:'center', alignItems:'center'}}>
+      <main style={{marginTop:'3rem', marginBottom:'4rem', minHeight:'calc(100vh - 7rem)', display:'flex', justifyContent:'center', alignItems:'center'}}>
         {children}
       </main>
 

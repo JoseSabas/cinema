@@ -20,10 +20,13 @@ export const FilmList = () => {
 
   return (
     <div className={styles['main-container']}>
-      {isLoading ?
-        <div>Loading...</div> :
-        films?.map(film => <FilmCard data={film} key={film.id} />)
-      }
+      <div className={styles['title-container']}>Todas las películas</div>
+      <div className={styles['films-container']}>
+        {isLoading ?
+          <div>Loading...</div> :
+          films?.map(film => <FilmCard data={film} key={film.id} />)
+        }
+      </div>
     </div>
   )
 }
