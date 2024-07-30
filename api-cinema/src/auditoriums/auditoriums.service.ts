@@ -14,15 +14,4 @@ export class AuditoriumsService {
   async create(createAuditoriumDto:CreateAuditoriumDto) {
     return await this.auditoriumRepository.save(createAuditoriumDto);
   }
-
-  async findAll(){
-    return await this.auditoriumRepository.find();
-  }
-
-  async findOne(id:number){
-    const auditorium = await this.auditoriumRepository.findOneBy({id});
-    if(!auditorium)
-      throw new BadRequestException('Cat not found');
-    return auditorium;
-  }
 }

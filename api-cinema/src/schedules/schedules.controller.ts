@@ -1,4 +1,5 @@
-import { Controller, Post, Get, Body, Param } from '@nestjs/common';
+import { Controller, Post, Get, Body, Param, UseGuards } from '@nestjs/common';
+import { AuthGuard } from "../auth/guard/auth.guard";
 import { SchedulesService } from './schedules.service';
 import { CreateScheduleDto } from './dto/create-schedule.dto';
 
@@ -7,6 +8,7 @@ export class SchedulesController {
   constructor(private readonly schedulesService:SchedulesService) {}
 
   @Post()
+  @UseGuards(AuthGuard)
   create(@Body() createScheduleDto:CreateScheduleDto){
     return this.schedulesService.create(createScheduleDto);
   }

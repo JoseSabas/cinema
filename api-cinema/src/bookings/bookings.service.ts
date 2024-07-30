@@ -12,7 +12,6 @@ export class BookingsService {
   ) {}
 
   async create(createBookingDto:CreateBookingDto) {
-    const {id} = await this.bookingRepository.save(createBookingDto);
-    return {id};
+    return await this.bookingRepository.save(createBookingDto);
   }
 }
