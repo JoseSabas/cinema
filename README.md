@@ -20,4 +20,4 @@
 3. Acceder al directorio ```api-cinema```
 4. Crear imagen del proyecto backend: ```docker build -t cinema-back .```
 5. Crear contenedores: ```docker compose up -d```
-6. Acceder al sitio: <ins>http://localhost:3001/</ins>
+6. Acceder al sitio: http://localhost:3001/
