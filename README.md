@@ -31,7 +31,7 @@
 3. Acceder al directorio ```api-cinema```
 4. Crear archivo ```.env``` (en la raíz del proyecto) con el siguiente contenido:
     ```
-    MYSQL_HOST=localhost
+    MYSQL_HOST=mysql-db
     MYSQL_LOCAL_PORT=3307
     MYSQL_DOCKER_PORT=3306
     MYSQL_PORT=3306
