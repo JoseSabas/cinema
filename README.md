@@ -29,8 +29,25 @@
 1. Acceder al directorio ```Cinema```
 2. Crear imagen del proyecto backend: ```docker build -t cinema-front .```
 3. Acceder al directorio ```api-cinema```
-4. Crear imagen del proyecto backend: ```docker build -t cinema-back .```
-5. Reemplazar el contenido del archivo ```docker-compose.yml``` por:
+4. Crear archivo ```.env``` (en la raíz del proyecto) con el siguiente contenido:
+    ```
+    MYSQL_HOST=localhost
+    MYSQL_LOCAL_PORT=3307
+    MYSQL_DOCKER_PORT=3306
+    MYSQL_PORT=3306
+    MYSQL_USER=user_cinema
+    MYSQL_ROOT_PASSWORD=root
+    MYSQL_PASSWORD=root
+    MYSQL_DATABASE=cinema
+
+    NESTJS_APP_LOCAL_PORT=3000
+    NESTJS_APP_DOCKER_PORT=3000
+    
+    NEXTJS_APP_LOCAL_PORT=3001
+    NEXTJS_APP_DOCKER_PORT=3001
+    ```
+5. Crear imagen del proyecto backend: ```docker build -t cinema-back .```
+6. Reemplazar el contenido del archivo ```docker-compose.yml``` por:
     ```
     version: "3.8"
     
