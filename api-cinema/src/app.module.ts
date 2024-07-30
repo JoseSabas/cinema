@@ -9,9 +9,11 @@ import { BookingsModule } from './bookings/bookings.module';
 import { SeatsModule } from './seats/seats.module';
 import { ConfigModule } from '@nestjs/config';  //Para poder leer Variables de entorno
 
+const ENV = process.env.npm_lifecycle_event;
+
 @Module({
   imports: [
-    ConfigModule.forRoot(),  //Para poder leer Variables de entorno
+    ConfigModule.forRoot({envFilePath:`.env.${ENV==='start:dev' ? 'development': 'production'}`}),  //Para poder leer Variables de entorno
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.MYSQL_HOST,
@@ -20,7 +22,7 @@ import { ConfigModule } from '@nestjs/config';  //Para poder leer Variables de e
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DATABASE,
       autoLoadEntities: true,
-      synchronize: true,
+      synchronize: true
     }),
     AuthModule,
     AuditoriumsModule,

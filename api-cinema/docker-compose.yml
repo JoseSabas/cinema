@@ -1,7 +1,6 @@
 version: "3.8"
 
 services:
-  #BD
   mysql-db:
     container_name: mysql-db
     image: mysql:8.0
