@@ -1,2 +1,5 @@
 # cinema
-Cinema test
+
+## Correr en desarrollo
+
+## Correr en producción
