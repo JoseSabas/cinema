@@ -1,4 +1,4 @@
-import { IsInt, IsPositive } from 'class-validator';
+import { IsInt, IsPositive, IsString, MinLength } from 'class-validator';
 
 export class CreateBookingDto {
   @IsInt()
@@ -8,4 +8,10 @@ export class CreateBookingDto {
   @IsInt()
   @IsPositive()
   schedule: number;
+}
+
+export class FindBookingDto {
+  @IsString()
+  @MinLength(1)
+  booker: string;
 }

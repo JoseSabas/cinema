@@ -17,3 +17,8 @@ interface Movie {
   title: string;
   image: string;
 }
+
+export interface BookingBookerResponse {
+  uuid: string;
+  createdDate: string;
+}

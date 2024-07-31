@@ -10,7 +10,7 @@ export const Navbar = () => {
 
   return (
     <nav className={styles['main-container']}>
-      <div className={styles['logo-container']}>
+      <div onClick={ev => router.push("/")} className={styles['logo-container']}>
         <Image src={"/film.png"} width="35" height="35" objectFit="cover" />
         <div className={styles['logo-title']}>Cinema</div>
       </div>

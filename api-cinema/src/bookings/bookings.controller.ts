@@ -1,7 +1,7 @@
 import { Controller, Post, Get, Body, Param, UseGuards } from '@nestjs/common';
 import { AuthGuard } from "../auth/guard/auth.guard";
 import { BookingsService } from './bookings.service';
-import { CreateBookingDto } from './dto/create-booking.dto';
+import { CreateBookingDto, FindBookingDto } from './dto/create-booking.dto';
 
 @Controller('bookings')
 export class BookingsController {
@@ -21,5 +21,14 @@ export class BookingsController {
     const seats = data.seats.map(({n}) => n);
 
     return {uuid:data.uuid, createdDate:data.createdDate, email:data.booker.email, hour:data.schedule.hour, auditorium:data.schedule.auditorium.name, movie:{title:data.schedule.movie.title, image:data.schedule.movie.image}, seats};
+  }
+
+  @Get()
+  @UseGuards(AuthGuard)
+  async findAll(@Body() findBookingDto:FindBookingDto) {
+    const data = await this.bookingsService.findByBookerId(findBookingDto);
+    const res = data.map(({uuid, createdDate}) => ({uuid, createdDate:'31/07/2024'}));
+
+    return res;
   }
 }

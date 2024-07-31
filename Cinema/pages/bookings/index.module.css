@@ -25,13 +25,17 @@
 .booking-container {
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 0;
+  padding: 0.5rem;
   border-bottom: 1px solid rgb(176, 174, 174);
   cursor: pointer;
   transition: all 0.5s ease;
 }
 .booking-container:hover {
+  background-color: rgb(205, 197, 197);
   transform: scale(1.02);
+}
+.active-booking-container {
+  background-color: rgb(205, 197, 197);
 }
 .subtitle {
   margin: 0;
