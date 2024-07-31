@@ -1,4 +1,5 @@
-import { FC, useReducer } from 'react';
+import { FC, useReducer, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { AuthContext, authReducer } from './';
@@ -13,7 +14,26 @@ export interface AuthState {
 const AUTH_INITIAL_STATE:AuthState = {isLoggedIn:false, user:undefined};
 
 export const AuthProvider:FC = ({children}) => {
+  const router = useRouter();
   const [state, dispatch] = useReducer(authReducer, AUTH_INITIAL_STATE);
+
+  const getJWTPayload = (token:string) => {
+    token = token.split('.')[1];
+    const base64 = token.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+  }
+
+  useEffect(() => {
+    if(router.pathname.includes("auth"))
+      logout();
+    else{
+      const token = Cookies.get('token');
+      if(token){
+        const {name, id} = getJWTPayload(token);
+        dispatch({type:'[Auth] - Login', payload:{name, id}});
+      }
+    }
+  }, []);
 
   const loginUser = async(email:string, password:string):Promise<boolean> => {
     try{
@@ -40,8 +60,9 @@ export const AuthProvider:FC = ({children}) => {
   }
 
   const logout = () => {
-    console.log('logout')
     Cookies.remove('token');
+    dispatch({type:'[Auth] - Logout'});
+    router.push('/');
   }
 
   return (

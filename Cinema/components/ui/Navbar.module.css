@@ -39,3 +39,10 @@
   color: white;
   font-size: 0.8rem;
 }
+.button2 {
+  width: auto;
+  background-color: rgb(41, 158, 41);
+  margin-right: 1rem;
+  font-size: 0.65rem;
+  padding: 0.25rem;
+}

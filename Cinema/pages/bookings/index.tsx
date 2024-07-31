@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
+import { AuthContext } from '../../context/auth';
 import { CinemaLayout } from '../../components/layouts';
 import { PageLoader, Loader1 } from '../../components/ui';
 import { cinemaApi } from '../../api';
@@ -9,6 +10,7 @@ import styles from './index.module.css';
 
 const BookingPage = () => {
   const router = useRouter();
+  const { user } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [myBookings, setMyBookings] = useState<BookingBookerResponse[]>([]);
   const [filmData, setFilmData] = useState<BookingUUIDResponse>();
@@ -18,7 +20,7 @@ const BookingPage = () => {
     const fetchData = async(token:string) => {
       try{
         const headers = {Authorization:`Bearer ${token}`};
-        const {data} = await cinemaApi.get<BookingBookerResponse[]>('/bookings', {headers, params:{booker:1}});
+        const {data} = await cinemaApi.get<BookingBookerResponse[]>('/bookings', {headers, params:{booker:user?.id}});
         setMyBookings(data);
         if(data.length)
           setActiveBooking(data[0].uuid);

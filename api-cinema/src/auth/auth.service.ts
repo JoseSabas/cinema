@@ -17,10 +17,10 @@ export class AuthService {
 
     const {id} = await this.bookersService.create({name, email, password:await bcryptjs.hash(password, 10)});
 
-    const payload = {email};
-    const token = await this.jwtService.signAsync(payload);
+    const userData = {name, id};
+    const token = await this.jwtService.signAsync(userData);
 
-    return {token, user:{name, id}};
+    return {token, user:userData};
   }
 
   async login({email, password}:LoginDto){
@@ -32,9 +32,9 @@ export class AuthService {
     if(!isPasswordValid)
       throw new UnauthorizedException('password is wrong');
 
-    const payload = {email};
-    const token = await this.jwtService.signAsync(payload);
+    const user = {name:booker.name, id:booker.id};
+    const token = await this.jwtService.signAsync(user);
 
-    return {token, user:{name:booker.name, id:booker.id}};
+    return {token, user};
   }
 }
