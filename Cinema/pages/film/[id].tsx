@@ -4,9 +4,9 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import { AuthContext } from '../../context/auth';
 import { CinemaLayout } from '../../components/layouts';
-import { ButtonLoader } from '../../components/ui';
+import { ButtonLoader, Confirmation } from '../../components/ui';
 import { cinemaApi } from '../../api';
-import { FilmResponse, Schedule, ScheduleResponse, BookingResponse } from '../../interfaces';
+import { FilmResponse, Schedule, ScheduleResponse, BookingResponse, BookingUUIDResponse } from '../../interfaces';
 import styles from './[id].module.css';
 
 interface Props {
@@ -27,6 +27,7 @@ const RoomPage:NextPage<Props> = ({id}) => {
   const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
   const [isBooking, setIsBooking] = useState<boolean>(false);
   const [msg, setMsg] = useState<string>('');
+  const [confirmation, setConfirmation] = useState<BookingUUIDResponse|undefined>();
 
   useEffect(() => {
     const fetchData = async() => {
@@ -95,15 +96,21 @@ const RoomPage:NextPage<Props> = ({id}) => {
     const token = Cookies.get('token');
     const headers = {Authorization:`Bearer ${token}`};
     try{
-      const {data:{id}} = await cinemaApi.post<BookingResponse>('/bookings', {booker:user?.id, schedule:activeSchedule}, {headers});
+      const {data:{id, uuid}} = await cinemaApi.post<BookingResponse>('/bookings', {booker:user?.id, schedule:activeSchedule}, {headers});
       for(const n of selectedSeats)
         await cinemaApi.post('/seats', {n, booking:id}, {headers});
-      router.push("/");
+      const {data} = await cinemaApi.get<BookingUUIDResponse>(`/bookings/${uuid}`, {headers});
+      setConfirmation(data);
+      //router.push("/");
     }catch(e){
       setMsg('Error al reservar');
     }finally{
       setIsBooking(false);
     }
+  }
+
+  const handleAccept = () => {
+    setConfirmation(undefined);
   }
 
   return (
@@ -117,10 +124,10 @@ const RoomPage:NextPage<Props> = ({id}) => {
         <div className={styles['screen']}>Pantalla</div>
         <div className={styles['legend-container']}>
           <div className={styles['legend-item']}>
-            <div className={`${styles['legend-color']} ${styles['bussy-legend-color']}`}/>Bussy
+            <div className={`${styles['legend-color']} ${styles['bussy-legend-color']}`}/>Ocupado
           </div>
           <div className={styles['legend-item']}>
-            <div className={styles['legend-color']}/>Available
+            <div className={styles['legend-color']}/>Disponible
           </div>
         </div>
       </div>
@@ -153,6 +160,7 @@ const RoomPage:NextPage<Props> = ({id}) => {
         </button>
         {msg && <p className={styles['msg']}>{msg}</p>}
       </form>
+      {confirmation && <Confirmation data={confirmation} onAccept={handleAccept} />}
     </CinemaLayout>
   )
 }

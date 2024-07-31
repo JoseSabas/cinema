@@ -14,4 +14,8 @@ export class BookingsService {
   async create(createBookingDto:CreateBookingDto) {
     return await this.bookingRepository.save(createBookingDto);
   }
+
+  async findOne(uuid:string) {
+    return await this.bookingRepository.findOne({where:{uuid}, relations:["seats"]});
+  }
 }
