@@ -1,40 +1,13 @@
-import React, { useContext, useState } from 'react';
-import { useForm } from 'react-hook-form';
 import NextLink from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { AuthContext } from '../../context/auth';
 import { CinemaLayout } from '../../components/layouts';
 import { Loader } from '../../components/ui';
 import { validations } from '../../utils';
+import useAuth from '../../hooks/useAuth';
 import styles from './form.module.css';
 
-type FormData = {
-  name: string;
-  email: string,
-  password: string
-};
-
 const RegisterPage = () => {
-  const router = useRouter();
-  const { registerUser } = useContext(AuthContext);
-  const [isPwd, setIsPwd] = useState<boolean>(true);
-  const { register, handleSubmit, formState:{errors} } = useForm<FormData>();
-  const [islogin, setIslogin] = useState<boolean>(false);
-  const [errorMsg, setErrorMsg] = useState<string>('');
-
-  const handleAuth = async({name, email, password}:FormData) => {
-    if(islogin)
-      return;
-    setErrorMsg('');
-    setIslogin(true);
-    const { hasError, message } = await registerUser(name, email, password);
-    if(!hasError)
-      router.push("/");
-    else
-      setErrorMsg(message||'');
-    setIslogin(false);
-  }
+  const { islogin, isPwd, errors, errorMsg, handleSubmit, handleAuth, register, setIsPwd } = useAuth();
 
   return (
     <CinemaLayout title="Ingresar" pageDescription="Ingresar">

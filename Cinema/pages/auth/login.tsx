@@ -1,39 +1,13 @@
-import { useContext, useState } from 'react';
-import { useForm } from 'react-hook-form';
 import NextLink from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { AuthContext } from '../../context/auth';
 import { CinemaLayout } from '../../components/layouts';
 import { Loader } from '../../components/ui';
 import { validations } from '../../utils';
+import useAuth from '../../hooks/useAuth';
 import styles from './form.module.css';
 
-type FormData = {
-  email: string,
-  password: string
-};
-
 const LoginPage = () => {
-  const router = useRouter();
-  const { loginUser } = useContext(AuthContext);
-  const [isPwd, setIsPwd] = useState<boolean>(true);
-  const { register, handleSubmit, formState:{errors} } = useForm<FormData>();
-  const [islogin, setIslogin] = useState<boolean>(false);
-  const [errorMsg, setErrorMsg] = useState<string>('');
-
-  const handleAuth = async({email, password}:FormData) => {
-    if(islogin)
-      return;
-    setErrorMsg('');
-    setIslogin(true);
-    const isValidLogin = await loginUser(email, password);
-    if(isValidLogin)
-      router.push("/");
-    else
-      setErrorMsg('Credenciales no válidas');
-    setIslogin(false);
-  }
+  const { islogin, isPwd, errors, errorMsg, handleSubmit, handleAuth, register, setIsPwd } = useAuth();
   
   return (
     <CinemaLayout title="Ingresar" pageDescription="Ingresar">

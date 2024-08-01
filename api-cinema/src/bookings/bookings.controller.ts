@@ -27,7 +27,7 @@ export class BookingsController {
   @UseGuards(AuthGuard)
   async findAll(@Body() findBookingDto:FindBookingDto) {
     const data = await this.bookingsService.findByBookerId(findBookingDto);
-    const res = data.map(({uuid, createdDate}) => ({uuid, createdDate:'31/07/2024'}));
+    const res = data.map(({uuid, createdDate}) => ({uuid, createdDate:createdDate.toISOString().split('T')[0].replaceAll('-', '/')}));
 
     return res;
   }
