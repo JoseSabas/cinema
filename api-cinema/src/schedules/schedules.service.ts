@@ -11,6 +11,10 @@ export class SchedulesService {
     private readonly scheduleRepository:Repository<Schedule>
   ) {}
 
+  async createMultiple(createScheduleDto:CreateScheduleDto[]) {
+    return await this.scheduleRepository.save(createScheduleDto);
+  }
+
   async create(createScheduleDto:CreateScheduleDto) {
     return await this.scheduleRepository.save(createScheduleDto);
   }

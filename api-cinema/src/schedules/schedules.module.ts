@@ -9,6 +9,7 @@ import { MoviesModule } from 'src/movies/movies.module';
 @Module({
   imports: [TypeOrmModule.forFeature([Schedule]), AuditoriumsModule, MoviesModule],
   controllers: [SchedulesController],
-  providers: [SchedulesService]
+  providers: [SchedulesService],
+  exports: [SchedulesService]
 })
 export class SchedulesModule {}

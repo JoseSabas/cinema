@@ -7,6 +7,7 @@ import { Auditorium } from './entities/auditorium.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([Auditorium])],
   controllers: [AuditoriumsController],
-  providers: [AuditoriumsService]
+  providers: [AuditoriumsService],
+  exports: [AuditoriumsService]
 })
 export class AuditoriumsModule {}

@@ -11,6 +11,10 @@ export class MoviesService {
     private readonly movieRepository:Repository<Movie>
   ) {}
 
+  async createMultiple(createMovieDto:CreateMovieDto[]) {
+    return await this.movieRepository.save(createMovieDto);
+  }
+
   async create(createMovieDto:CreateMovieDto) {
     return await this.movieRepository.save(createMovieDto);
   }

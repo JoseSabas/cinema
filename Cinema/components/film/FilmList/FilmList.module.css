@@ -11,5 +11,5 @@
 .films-container {
   display: flex;
   justify-content: center;
-  gap: 3rem;
+  gap: 2.5rem;
 }
