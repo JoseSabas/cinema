@@ -25,7 +25,7 @@ export const Navbar = () => {
           <div>
             {pathname &&
               <>
-                {isLoggedIn&&pathname==="/" && <button onClick={() => router.push("/bookings") } className={`${styles['button']} ${styles['button2']}`}>Mis reservaciones</button>}
+                {isLoggedIn&&!pathname?.includes("auth") && <button onClick={() => router.push("/bookings") } className={`${styles['button']} ${styles['button2']}`}>Mis reservaciones</button>}
                 <button onClick={logout} className={styles['button']}>Salir</button>
               </>
             }
