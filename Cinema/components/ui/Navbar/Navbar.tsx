@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { AuthContext } from '../../context/auth';
+import { AuthContext } from '../../../context/auth';
 import styles from './Navbar.module.css';
 
 export const Navbar = () => {

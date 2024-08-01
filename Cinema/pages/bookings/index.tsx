@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import { AuthContext } from '../../context/auth';
 import { CinemaLayout } from '../../components/layouts';
-import { PageLoader, Loader1 } from '../../components/ui';
+import { Loader } from '../../components/ui';
 import { cinemaApi } from '../../api';
 import { BookingUUIDResponse, BookingBookerResponse } from '../../interfaces';
 import styles from './index.module.css';
@@ -52,7 +52,7 @@ const BookingPage = () => {
   return (
     <CinemaLayout title="Mis reservaciones" pageDescription="Detalle de mis reservaciones">
       {isLoading ?
-        <PageLoader /> :
+        <Loader type="page" /> :
         myBookings.length ?
           <div>
             <p className={styles['main-title']}>Mis Reservaciones</p>
@@ -74,7 +74,7 @@ const BookingPage = () => {
               <div className={styles['right-container']}>
                 {!filmData ? 
                   <div className={styles['film-loader-container']}>
-                    <Loader1 />
+                    <Loader type="A" />
                   </div> :
                   <>
                     <p className={styles['film-title']}>{filmData.movie.title}</p>

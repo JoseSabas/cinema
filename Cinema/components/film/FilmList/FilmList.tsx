@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { FilmCard } from '.';
-import { cinemaApi } from '../../api';
-import { Film } from '../../interfaces';
+import { FilmCard } from '../';
+import { cinemaApi } from '../../../api';
+import { Film } from '../../../interfaces';
 import styles from './FilmList.module.css';
 
 export const FilmList = () => {

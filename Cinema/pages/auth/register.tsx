@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { AuthContext } from '../../context/auth';
 import { CinemaLayout } from '../../components/layouts';
-import { ButtonLoader } from '../../components/ui';
+import { Loader } from '../../components/ui';
 import { validations } from '../../utils';
 import styles from './form.module.css';
 
@@ -57,7 +57,7 @@ const RegisterPage = () => {
         </div>
         {!!errors.password && <p className={styles['error-msg']}>{errors.password.message}</p>}
         <button type="submit" className={styles['button']}>
-          {islogin ? <ButtonLoader /> : 'Ingresar'}
+          {islogin ? <Loader type='button' /> : 'Ingresar'}
         </button>
         <NextLink href='/auth/login' passHref>
           <div className={styles['link']}>

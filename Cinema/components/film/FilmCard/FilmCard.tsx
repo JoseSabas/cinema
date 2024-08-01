@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import NextLink from 'next/link';
-import { Film } from '../../interfaces';
+import { Film } from '../../../interfaces';
 import styles from './FilmCard.module.css';
 
 interface Props {

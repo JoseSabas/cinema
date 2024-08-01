@@ -2,7 +2,7 @@ import { NextPage, GetServerSideProps } from 'next';
 import { CinemaLayout } from '../../components/layouts';
 import { Schedule } from '../../interfaces';
 import useFilmPage from '../../hooks/useFilmPage';
-import { ButtonLoader, Confirmation } from '../../components/ui';
+import { Loader, Confirmation } from '../../components/ui';
 import styles from './[id].module.css';
 
 interface Props {
@@ -55,7 +55,7 @@ const RoomPage:NextPage<Props> = ({id}) => {
           }
         </div>
         <button type="submit" className={styles['button']}>
-          {isBooking ? <ButtonLoader /> : 'Reservar'}
+          {isBooking ? <Loader type='button' /> : 'Reservar'}
         </button>
         {msg && <p className={styles['msg']}>{msg}</p>}
       </form>

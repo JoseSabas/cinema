@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { BookingUUIDResponse } from '../../interfaces';
+import { BookingUUIDResponse } from '../../../interfaces';
 import styles from './Confirmation.module.css';
 
 interface Props {
