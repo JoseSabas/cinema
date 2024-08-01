@@ -32,6 +32,6 @@ export class MoviesController {
         res[auditorium.auditoriumName] = {seats:auditorium.auditoriumSeats, schedules:[{id:auditorium.scheduleId, hour:auditorium.scheduleHour}]};
     });
 
-    return {title:data.title, description:data.description, auditoriums:res};
+    return {title:data.title, description:data.description, image:data.image, auditoriums:res};
   }
 }

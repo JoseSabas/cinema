@@ -33,6 +33,7 @@ const RoomPage:NextPage<Props> = ({id}) => {
       <form onSubmit={handleSubmit} className={styles['form-container']}>
         <p className={styles['form-title']}>{data?.title}</p>
         <p className={styles['form-description']}>{data?.description}</p>
+        <div className={styles['img']} style={{backgroundImage:`url(${data?.image})`}} />
         <p className={styles['form-subtitle']}>Selecciona una sala</p>
         <select value={activeAuditorium} onChange={e => setActiveAuditorium(e.target.value)} className={styles['form-select']}>
           {auditoriums.map(name => (

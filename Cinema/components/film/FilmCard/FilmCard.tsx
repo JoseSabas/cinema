@@ -10,9 +10,7 @@ interface Props {
 export const FilmCard:FC<Props> = ({data}) => {
   return (
     <NextLink href={`/film/${data.id}`} passHref prefetch={false}>
-      <div className={styles['main-container']} style={{backgroundImage:`url(${data.image})`}}>
-        
-      </div>
+      <div className={styles['main-container']} style={{backgroundImage:`url(${data.image})`}} />
     </NextLink>
   )
 }

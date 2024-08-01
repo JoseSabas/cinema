@@ -8,6 +8,7 @@ export interface Film {
 export interface FilmResponse {
   title: string;
   description: string;
+  image: string;
   auditoriums: Auditoriums;
 }
 
