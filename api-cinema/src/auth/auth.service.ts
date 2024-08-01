@@ -47,13 +47,6 @@ export class AuthService {
     const token = await this.jwtService.signAsync(user);
 
     //=========================================================
-    /*const a = await this.mailService.sendMail({
-      from: 'Jose Sabas <josesabashdez@gmail.com>',
-      to: 'joserodolfosabashernandez@gmail.com',
-      subject: `How to Send Emails with Nodemailer`,
-      text: `Forgot your password? If you didn't forget your password, please ignore this email!`
-    });
-    console.log('a -> ', a);*/
     //=========================================================
 
     return {token, user};
