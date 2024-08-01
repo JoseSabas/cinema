@@ -6,7 +6,7 @@ export class Seat {
   @Column({primary:true, generated:true})
   id: number;
 
-  @Column({unique:true, nullable:false})
+  @Column({nullable:false})
   n: number;
 
   @ManyToOne(() => Booking, (booking) => booking.id, {eager:true})
