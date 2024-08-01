@@ -21,6 +21,8 @@
   flex-grow: 1;
   min-height: 17rem;
   max-height: 17rem;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .booking-container {
   display: flex;

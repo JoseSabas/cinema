@@ -8,6 +8,7 @@ import { SchedulesModule } from './schedules/schedules.module';
 import { BookingsModule } from './bookings/bookings.module';
 import { SeatsModule } from './seats/seats.module';
 import { ConfigModule } from '@nestjs/config';  //Para poder leer Variables de entorno
+import { MailerModule } from '@nestjs-modules/mailer';
 
 @Module({
   imports: [
@@ -21,6 +22,15 @@ import { ConfigModule } from '@nestjs/config';  //Para poder leer Variables de e
       database: process.env.MYSQL_DATABASE,
       autoLoadEntities: true,
       synchronize: true
+    }),
+    MailerModule.forRoot({
+      transport: {
+        host: process.env.EMAIL_HOST,
+        auth: {
+          user: process.env.EMAIL_USERNAME,
+          pass: process.env.EMAIL_PASSWORD
+        }
+      }
     }),
     AuthModule,
     AuditoriumsModule,
