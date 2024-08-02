@@ -82,12 +82,13 @@ const useFilmPage = (id:string) => {
     const token = Cookies.get('token');
     const headers = {Authorization:`Bearer ${token}`};
     try{
-      const {data:{id, uuid}} = await cinemaApi.post<BookingResponse>('/bookings', {booker:user?.id, schedule:activeSchedule}, {headers});
+      console.log('user -> ', user);
+      /*const {data:{id, uuid}} = await cinemaApi.post<BookingResponse>('/bookings', {booker:user?.id, schedule:activeSchedule}, {headers});
       for(const n of selectedSeats)
         await cinemaApi.post('/seats', {n, booking:id}, {headers});
       const {data} = await cinemaApi.get<BookingUUIDResponse>(`/bookings/${uuid}`, {headers});
       setConfirmation(data);
-      await fetchData();
+      await fetchData();*/
     }catch(e){
       setMsg('Error al reservar');
     }finally{

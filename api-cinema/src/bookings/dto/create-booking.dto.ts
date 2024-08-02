@@ -13,5 +13,5 @@ export class CreateBookingDto {
 export class FindBookingDto {
   @IsString()
   @MinLength(1)
-  booker: string;
+  booker: number;
 }

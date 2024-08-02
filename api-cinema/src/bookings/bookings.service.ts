@@ -20,6 +20,6 @@ export class BookingsService {
   }
 
   async findByBookerId({booker}:FindBookingDto) {
-    return await this.bookingRepository.find({where:{booker}});
+    return await this.bookingRepository.find({where:{booker:{id:booker}}});
   }
 }
