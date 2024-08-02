@@ -3,7 +3,9 @@ import { AuthGuard } from "../auth/guard/auth.guard";
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService:AuthService) {}
@@ -18,7 +20,8 @@ export class AuthController {
     return this.authService.login(loginDto);
   }
 
-  @Post('Seed')
+  @Post('seed')
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   async seed() {
     return await this.authService.seed();
