@@ -27,7 +27,7 @@
 ## Correr en producción
 
 1. Acceder al directorio ```Cinema```
-2. Crear imagen del proyecto backend: ```docker build -t cinema-front .```
+2. Crear imagen del proyecto frontend: ```docker build -t cinema-front .```
 3. Acceder al directorio ```api-cinema```
 4. Crear archivo ```.env``` (en la raíz del proyecto) con el siguiente contenido:
     ```
