@@ -14,6 +14,10 @@
     MYSQL_ROOT_PASSWORD=root
     MYSQL_PASSWORD=root
     MYSQL_DATABASE=cinema
+
+    EMAIL_HOST=live.smtp.mailtrap.io
+    EMAIL_USERNAME=api
+    EMAIL_PASSWORD=c1658d7a9e8c45c11e614257d6095603
     ```
 3. Instalar dependencias: ```npm install```
 4. Levantar la base de datos: ```docker compose up -d```
@@ -39,6 +43,10 @@
     MYSQL_ROOT_PASSWORD=root
     MYSQL_PASSWORD=root
     MYSQL_DATABASE=cinema
+
+    EMAIL_HOST=live.smtp.mailtrap.io
+    EMAIL_USERNAME=api
+    EMAIL_PASSWORD=c1658d7a9e8c45c11e614257d6095603
 
     NESTJS_APP_LOCAL_PORT=3000
     NESTJS_APP_DOCKER_PORT=3000
