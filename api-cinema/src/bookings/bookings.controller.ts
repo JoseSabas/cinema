@@ -26,7 +26,7 @@ export class BookingsController {
     return {uuid:data.uuid, createdDate:data.createdDate, email:data.booker.email, hour:data.schedule.hour, auditorium:data.schedule.auditorium.name, movie:{title:data.schedule.movie.title, image:data.schedule.movie.image}, seats};
   }
 
-  @Get()
+  @Post('/find')
   @UseGuards(AuthGuard)
   async findAll(@Body() findBookingDto:FindBookingDto) {
     const data = await this.bookingsService.findByBookerId(findBookingDto);

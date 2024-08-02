@@ -17,7 +17,7 @@ const useBookingsPage = () => {
     const fetchData = async(token:string) => {
       try{
         const headers = {Authorization:`Bearer ${token}`};
-        const {data} = await cinemaApi.get<BookingBookerResponse[]>('/bookings', {headers, params:{booker:user?.id}});
+        const {data} = await cinemaApi.post<BookingBookerResponse[]>('/bookings/find/', {booker:user?.id}, {headers});
         setMyBookings(data);
         if(data.length)
           setActiveBooking(data[0].uuid);
