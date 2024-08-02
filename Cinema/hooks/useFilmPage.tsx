@@ -26,8 +26,11 @@ const useFilmPage = (id:string) => {
 
   useEffect(() => {
     const schedulesA = data?.auditoriums[activeAuditorium].schedules||[];
+    const seats = data?.auditoriums[activeAuditorium].seats||0;
     setSchedules(schedulesA);
     setActiveSchedule(schedulesA[0]?.id);
+    setSeats(Array.from(Array(seats).keys()));
+    setSelectedSeats([]);
   }, [activeAuditorium]);
 
   useEffect(() => {
@@ -37,6 +40,7 @@ const useFilmPage = (id:string) => {
         setBusySeats(data.seats);
       }
     };
+    setSelectedSeats([]);
     fetchData();
   }, [activeSchedule, data]);
 

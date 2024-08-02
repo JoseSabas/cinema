@@ -1,6 +1,11 @@
 version: "3.8"
 
+networks:
+  app-network:
+    driver: bridge
+
 services:
+  #BD
   mysql-db:
     container_name: mysql-db
     image: mysql:8.0
@@ -15,3 +20,31 @@ services:
       - $MYSQL_LOCAL_PORT:$MYSQL_DOCKER_PORT
     volumes:
       - ./mysql:/var/lib/mysql
+    networks:
+      - app-network
+
+  #BACKEND
+  nestjs-app:
+    container_name: nestjs-app
+    depends_on: 
+      - mysql-db
+    image: cinema-back
+    restart: always
+    env_file: ./.env
+    ports:
+     - $NESTJS_APP_LOCAL_PORT:$NESTJS_APP_DOCKER_PORT
+    networks:
+      - app-network
+
+  #FRONTEND
+  nextjs-app:
+    container_name: nextjs-app
+    depends_on:
+      - nestjs-app
+    image: cinema-front
+    restart: always
+    env_file: ./.env
+    ports:
+     - $NEXTJS_APP_LOCAL_PORT:$NEXTJS_APP_DOCKER_PORT
+    networks:
+      - app-network
